@@ -8,8 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ReadThreadsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     private $thread;
 
     public function setUp()

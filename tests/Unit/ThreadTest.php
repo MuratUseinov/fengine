@@ -11,7 +11,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ThreadTest extends TestCase
 {
-    use DatabaseMigrations;
     public function test_a_thread_has_replies()
     {
         $thread = factory('App\Thread')->create();

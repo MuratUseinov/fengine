@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReplyTest extends TestCase
 {
-    use DatabaseMigrations;
     public function test_it_has_an_owner()
     {
         $reply = factory('App\Reply')->create();
