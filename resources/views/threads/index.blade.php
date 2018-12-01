@@ -11,6 +11,7 @@
                         @foreach($threads as $thread)
                             <article>
                                 <h4>
+                                    <a href=""> {{ $thread->creator->name }}</a> posted:
                                     <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                 </h4>
                                 <div class="body">{{ $thread->body }}</div>
