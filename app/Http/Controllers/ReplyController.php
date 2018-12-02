@@ -34,15 +34,18 @@ class ReplyController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Thread $thread
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Thread $thread, Request $request)
     {
-        return $thread->addReply([
+        $thread->addReply([
             'body' => $request->get('body'),
             'user_id' => auth()->user()->id,
         ]);
+
+        return back();
     }
 
     /**
