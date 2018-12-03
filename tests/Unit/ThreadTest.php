@@ -11,6 +11,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ThreadTest extends TestCase
 {
+    public function test_a_thread_can_make_string_path()
+    {
+        $thread = factory('App\Thread')->create();
+
+        $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
+    }
+
     public function test_a_thread_has_replies()
     {
         $thread = factory('App\Thread')->create();
@@ -34,5 +41,11 @@ class ThreadTest extends TestCase
         ]);
 
         $this->assertCount(1, $thread->replies);
+    }
+
+    public function test_a_thread_belongs_to_a_channel() {
+        $thread = factory('App\Thread')->create();
+
+        $this->assertInstanceOf('App\Channel', $thread->channel);
     }
 }

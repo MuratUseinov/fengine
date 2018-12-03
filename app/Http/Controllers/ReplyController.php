@@ -38,8 +38,12 @@ class ReplyController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Thread $thread, Request $request)
+    public function store($channel, Thread $thread, Request $request)
     {
+        $this->validate($request, [
+            'body' => 'required',
+        ]);
+
         $thread->addReply([
             'body' => $request->get('body'),
             'user_id' => auth()->user()->id,
