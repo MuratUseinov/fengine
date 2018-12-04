@@ -43,11 +43,12 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withExceptionHandling();
 
+        $this->post('/threads', [])
+            ->assertRedirect('/login');
+
         $this->get('/threads/create')
             ->assertRedirect('/login');
 
-        $this->post('/threads', [])
-            ->assertRedirect('/login');;
     }
 
     public function test_user_can_create_threads()
