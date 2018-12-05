@@ -17,8 +17,11 @@
             </div>
         </div>
 
+
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <hr>
+                <h4>Replies</h4>
                 @foreach($thread->replies as $reply)
                     @include('threads.reply')
                 @endforeach
@@ -30,8 +33,8 @@
                 <div class="col-md-8">
                     <form method="POST" action="{{ $thread->path() . '/replies' }}">
                         {{ csrf_field() }}
-                        <textarea name="body" id="body" cols="30" rows="10"></textarea>
-                        <button type="submit" class="btn btn-submit">Send</button>
+                        <textarea name="body" id="body" cols="30" rows="5" class="form-control"></textarea>
+                        <button type="submit" class="btn btn-success">Send</button>
                     </form>
                 </div>
             </div>

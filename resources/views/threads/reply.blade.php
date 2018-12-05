@@ -6,3 +6,4 @@
         {{ $reply->body }}
     </div>
 </div>
+<hr>
