@@ -69,4 +69,21 @@ class ReadThreadsTest extends TestCase
             ->assertSee($threadInChannel->title)
             ->assertDontSee($threadNotInChannel->title);
     }
+
+    /**
+     * A user can read a single thread page
+     *
+     * @return void
+     */
+    public function test_can_a_user_filter_threads_by_any_username()
+    {
+        $this->signIn(factory('App\User')->create(['name' => 'Useinoff']));
+
+        $thread = factory('App\Thread')->create(['user_id' => auth()->id()]);
+        $notThisUsersThread = factory('App\Thread')->create();
+
+        $this->get('threads?by=Useinoff')
+            ->assertSee($thread->title)
+            ->assertDontSee($notThisUsersThread->title);
+    }
 }
