@@ -86,4 +86,26 @@ class ReadThreadsTest extends TestCase
             ->assertSee($thread->title)
             ->assertDontSee($notThisUsersThread->title);
     }
+
+    public function test_a_user_can_filter_threads_by_popularity()
+    {
+        // Given we have three  threads
+        // With 2, 3 and 0 replies
+        $threadWithTwoReplies = factory('App\Thread')->create();
+        factory('App\Reply')->create(['thread_id' => $threadWithTwoReplies->id]);
+        factory('App\Reply')->create(['thread_id' => $threadWithTwoReplies->id]);
+
+        $threadWithThreeReplies = factory('App\Thread')->create();
+        factory('App\Reply')->create(['thread_id' => $threadWithThreeReplies->id]);
+        factory('App\Reply')->create(['thread_id' => $threadWithThreeReplies->id]);
+        factory('App\Reply')->create(['thread_id' => $threadWithThreeReplies->id]);
+
+        $threadWithNoReplies = $this->thread;
+
+        // When I filter all threads by popularity
+        $response = $this->getJson('threads?popular=1')->json();
+        // Then they should be returned from most replies to least
+
+        $this->assertEquals([3,2,0], array_column($response, 'replies_count'));
+    }
 }

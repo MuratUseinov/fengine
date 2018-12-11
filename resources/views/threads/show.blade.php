@@ -16,9 +16,12 @@
             </div>
             <hr>
             <h4>Replies</h4>
-            @foreach($thread->replies as $reply)
+
+            @foreach($replies as $reply)
                 @include('threads.reply')
             @endforeach
+
+            {{ $replies->links() }}
 
             @if(auth()->check())
 
@@ -33,7 +36,6 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">Forum Threads</div>
                 <div class="card-body">
                     <article>
                         <a href=""> {{ $thread->creator->name }}</a> posted:

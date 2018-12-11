@@ -7,7 +7,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                        <a href="{{ $thread->path() }}">
+                            {{ $thread->title }}
+                        </a>
+                        <span style="float: right;">{{ $thread->reply_count }} {{ str_plural('reply', $thread->reply_count) }}</span>
                     </div>
 
                     <div class="card-body">
